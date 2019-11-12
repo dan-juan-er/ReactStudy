@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入react的核心模块，支持我们写react的相关语法 -->
+    <script src="./js/react.min.js"></script>
+    <!-- react支持操作dom的相关操作 -->
+    <script src="./js/react-dom.min.js"></script>
+    <!-- 支持JSX语法的模块 -->
+    <script src="./js/browser.min.js"></script>
+	<style type="text/css">
+		#t1{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+    <div id="wrap">
+        
+    </div>
+</body>
+<!-- 让浏览器支持jsx语法，需要将script中的type类型修改成text/babel -->
+<script type="text/babel">
+let wrap = document.getElementById("wrap");
+let a = 666;
+// 创建一个标签
+// render渲染方法,参数1:小括号可省略;标签的内容可以使用{}灵活的获取表达是的值;一个标签结构有且只有一个根节点
+ReactDOM.render(
+(<div>
+	<p>文弓虽{a}</p>
+	<p>宋弓虽</p>
+	<p>宋{a > 7 ? 6 : 4}弓虽</p>
+	<p>宋{65+1}弓虽</p>
+</div>)
+,wrap);
+//如果在react遍历
+let names = ["宋","文","弓","虽"];
+ReactDOM.render(
+(<ul>
+	{
+		names.map((v,i)=>{
+			return <li>{v}---{i}</li>
+		})
+	}
+</ul>)
+,wrap);
+
+//第二种遍历方式 不通用 只取值不操作
+
+let nms = ["宋","文","弓","虽"];
+ReactDOM.render(
+(<ul>
+	{nms}
+</ul>)
+,wrap
+);
+//{}大括号不允许直接使用对象
+let stu = {name:"宋老板",sex:"man"};
+ReactDOM.render((
+<ul>
+	{stu.name}
+</ul>
+),wrap);
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入react的核心模块，支持我们写react的相关语法 -->
+    <script src="./js/react.min.js"></script>
+    <!-- react支持操作dom的相关操作 -->
+    <script src="./js/react-dom.min.js"></script>
+    <!-- 支持JSX语法的模块 -->
+    <script src="./js/browser.min.js"></script>
+	<style type="text/css">
+		#t1{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+    <!-- React.js是Facebook推出的前端UI库
+    优势：
+    1.虚拟DOM操作
+    2.更加高效的处理业务逻辑；    
+    3.组件化开发；
+    4. 可以使用JSX语法   可以在js当中书写HTML代码；-->
+    <div id="wrap">
+        
+    </div>
+</body>
+<script type="text/babel">
+// React.createElement();
+// 参数1：节点名；
+// 参数2：{}节点属性；
+// 参数3：节点的内容；
+// 返回值：新建的节点
+let hE = React.createElement("h2",{id:'t1'},"hello world!");
+let wrap = document.getElementById("wrap");
+//react将标签渲染到wrap中
+ReactDOM.render(hE,wrap);
+//或者创建节点的方式
+ReactDOM.render(
+	<h1 id="t1">你好</h1>,
+	wrap
+);
+/*如果在p标签中添加一个span
+第一种方式*/
+let pE = React.createElement("p",{},React.createElement("span",{},"我是span"));
+ReactDOM.render(pE,wrap);
+
+/*JSX:JavaScript XML 允许在JS语法中直接书写HTML标签*/
+//React 会检索第一个参数中的<></>或者，在底层自动调用React.createElement
+let aE = <a href="###">百度</a>;
+ReactDOM.render(aE,wrap);
+ReactDOM.render(<p>
+	<span>文弓虽</span>
+</p>
+,wrap);
+
+
+
+</script>
+</html>

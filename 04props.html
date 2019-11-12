@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<!-- 引入react的核心模块，支持我们写react的相关语法 -->
+		<script src="./js/react.min.js"></script>
+		<!-- react支持操作dom的相关操作 -->
+		<script src="./js/react-dom.min.js"></script>
+		<!-- 支持JSX语法的模块 -->
+		<script src="./js/browser.min.js"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+
+		</div>
+		<script type="text/babel">
+			let wrap = document.getElementById("wrap");
+	// props 属性传值
+	let Child = React.createClass({
+		render(){
+			return (
+			<ul>
+				{
+					this.props.lists.map((v,i)=>{
+						return <li key={i}>{v}</li>
+					})	
+				}
+			</ul>
+			)
+		}
+	});
+	
+	let arrNames = ["宋","文","强"];
+	
+	ReactDOM.render(<Child lists={arrNames}/>,wrap);
+	
+	//this.props.children 接收组件的内容部分 是一个数组
+	let Child2 = React.createClass({
+		render(){
+			return (
+			<ul>
+				<li>{this.props.children[0]}</li>
+				{
+					this.props.children.map((v,i)=>{
+						return <li key={i}>{v}</li>
+					})
+				}
+			</ul>
+			)
+		}
+	});
+	ReactDOM.render(
+	<Child2>
+		阿宋
+		<span>阿强</span>
+	</Child2>,wrap);
+	
+	//默认的props属性
+	let Child3 = React.createClass({
+		//设置默认props属性的方法
+		//键值对
+		getDefaultProps(){
+			return {
+				name:"文",
+				sex:"man"
+			}
+		},
+		render(){
+			return (
+			<div>
+				<p>{this.props.name}</p>
+				<p>{this.props.sex}</p>
+			</div>
+			)
+		}
+	});
+	ReactDOM.render(
+	<Child3 name="宋">
+		
+	</Child3>,wrap);
+	</script>
+	</body>
+</html>

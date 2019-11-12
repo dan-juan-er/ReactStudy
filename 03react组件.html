@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入react的核心模块，支持我们写react的相关语法 -->
+    <script src="./js/react.min.js"></script>
+    <!-- react支持操作dom的相关操作 -->
+    <script src="./js/react-dom.min.js"></script>
+    <!-- 支持JSX语法的模块 -->
+    <script src="./js/browser.min.js"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.one{
+			background-color: antiquewhite;
+		}
+	</style>
+</head>
+<body>
+    <div id="wrap">
+        
+    </div>
+	<script type="text/babel">
+	let wrap = document.getElementById("wrap");
+	// 创建组件 语法:
+	//方式一:
+	// let 组件名(首字母大写) ReactDOM.createClass({
+	// 	render:function(){
+	// 		return 组件的内容部分
+	// 	}
+	// })
+	let First = React.createClass({
+		render(){
+			return (
+			<div>
+				<h2>这是first组件内容部分</h2>
+			</div>
+			)
+		}
+	});
+	//ReactDOM.render(<First/>,wrap);
+	
+	//方式二：
+	function Second () {
+		return <h2>这是second组件内容部分</h2>
+	}
+	//ReactDOM.render(<Second/>,wrap);
+	//方式三：外部引入
+	//ReactDOM.render(<Third/>,wrap);
+	
+	//如何向组件传值
+	//如何接收外部传过来的值
+	//使用props对象，每个组件都自带一个props对象；
+	//该对象是只读的，定义输入属性的名和值；
+	let Four = React.createClass({
+		render(){
+			return <div>
+				<p>hello {this.props.a}</p>
+				<p>我的名字是{this.props.name}</p>
+			</div>
+		}
+	})
+	ReactDOM.render(<div>
+		<Four name="文弓虽"/>
+		<Four a="lady" />
+	</div>,wrap);
+	
+	//组件中设置样式
+	//className设置类名
+	//style设置样式{{}}设置，react在解析时，会添加px单位
+	let sty = {backgroundColor:"blue"};
+	let Five = React.createClass({
+		render(){
+			return <div className="one">
+				<p style={{color:"red",fontSize:"50"}}>娱乐</p>
+				<p style={sty}>新闻</p>
+			</div>
+		}
+	})
+	ReactDOM.render(<Five/>,wrap);
+	</script>
+</body>
+</html>
